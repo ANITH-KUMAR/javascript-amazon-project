@@ -1,5 +1,6 @@
 import {cart,Addtocart} from '../data/cart.js'
 import { products } from '../data/products.js';
+import { formatmoney } from './utils/money.js';
 let productshtml = "";
 products.forEach((product) => {
   productshtml += `<div class="product-container">
@@ -21,7 +22,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-price">
-            ₹${(product.priceCents * 0.1 * 3).toFixed(2)}
+            ₹${formatmoney(product.priceCents)}
           </div>
 
           <div class="product-quantity-container ">
