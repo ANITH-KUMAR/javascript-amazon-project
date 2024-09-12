@@ -24,9 +24,9 @@ products.forEach((product) => {
             ₹${(product.priceCents * 0.1*3).toFixed(2)}
           </div>
 
-          <div class="product-quantity-container">
-            <select>
-              <option selected value="1">1</option>
+          <div class="product-quantity-container ">
+            <select class="js-quantity-selector-${product.id}" >
+              <option  value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -56,20 +56,30 @@ products.forEach((product) => {
 
 document.querySelector(".products-js-grid").innerHTML = productshtml;
 
+// document.querySelector()
+
 document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
        button.addEventListener('click',()=>{
         const productId=button.dataset.productId;
         let c=0;
+
+      let find = document.querySelector(`.js-quantity-selector-${productId}`);
+     
+      
+      
+
+
         cart.forEach((item)=>{
             if(productId===item.productId){
-              item.quantity++;
+              item.quantity+=Number(find.value);
               c++;
             }
         })
         if(c===0){
-               cart.push({
-          productId,
-          quantity:1});
+              cart.push({
+                productId,
+                quantity: Number(find.value),
+              });
         }
         
         let cartquantity=0;
