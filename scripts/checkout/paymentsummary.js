@@ -13,10 +13,8 @@ export function renderPaymentSummary(){
      shippingprice+=deliveryoption.price;
   });
   const totalbeforetax=productprice+shippingprice;
-  console.log(totalbeforetax)
   const aftertaxprice=Math.round(totalbeforetax*0.05);
   const finalprice=totalbeforetax+aftertaxprice;
-  // console.log(aftertaxprice)
 
   const paymentsummaryhtml = `
       
