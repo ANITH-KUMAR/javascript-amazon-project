@@ -1,4 +1,4 @@
-import { cart,removeFromCart} from "../data/cart.js";
+import { cart,removeFromCart,updatedeliveryoption} from "../data/cart.js";
 import { products } from "../data/products.js";
 import  formatmoney  from "./utils/money.js";
 import  dayjs  from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
@@ -95,7 +95,9 @@ function deliveryoptionhtml(matchingproduct,cartitem){
                const extraprice=deleveryoption.price === 0?'FREE':`₹${deleveryoption.price}`
               const ischecked = deleveryoption.id === cartitem.deliveryoptionid;
               
-              html+=`<div class="delivery-option">
+              html+=`<div class="delivery-option  js-delivery-option"
+              data-product-id="${matchingproduct.id}"
+              data-delivery-option-id="${deleveryoption.id}">
                   <input type="radio"
                     ${ischecked? 'checked': '' }
                     class="delivery-option-input"
@@ -136,5 +138,13 @@ document.querySelectorAll('.js-delete-link').forEach((link)=>{
   })
     
 
-})
+});
+
+document.querySelectorAll(".js-delivery-option").forEach((element)=>{
+  element.addEventListener('click',()=>{
+    const {productId,deliveryOptionId}=element.dataset;
+         updatedeliveryoption(productId,deliveryOptionId);
+  });
+
+});
 
