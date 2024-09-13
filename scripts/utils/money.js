@@ -3,3 +3,5 @@ export function formatmoney(price){
   return price;
 
 }
+
+export default formatmoney;
