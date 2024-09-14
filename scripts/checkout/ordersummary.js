@@ -1,4 +1,4 @@
-import { cart, removeFromCart, updatedeliveryoption } from "../../data/cart.js";
+import { cart, removeFromCart, updatedeliveryoption,cartQuantity } from "../../data/cart.js";
 import { renderPaymentSummary } from "./paymentsummary.js";
 import { products,getProduct } from "../../data/products.js";
 import formatmoney from "../utils/money.js";
@@ -10,10 +10,7 @@ const deliverydate = today.add(7, "days");
 
 export function renderOrderSummary() {
   let cartsummary = "";
-  let quantity = 0;
-  cart.forEach((item) => {
-    quantity += item.quantity;
-  });
+  let quantity = cartQuantity();
   document.querySelector(
     ".change-the-cart-total"
   ).innerHTML = `${quantity} items`;
