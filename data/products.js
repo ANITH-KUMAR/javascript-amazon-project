@@ -1,3 +1,4 @@
+import formatmoney from "../scripts/utils/money.js";
 export function getProduct(productId){
   let matchingproduct;
 
@@ -9,6 +10,33 @@ export function getProduct(productId){
   return matchingproduct;
 
 }
+class Product{
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
+
+  constructor(product){
+           this.id=product.id;
+            this.image=product.image;
+            this.name=product.name;
+            this.rating=product.rating;
+            this.priceCents=product.priceCents;
+  }
+
+  getstarurl(){
+    return `images/ratings/rating-${this.rating.stars * 10}.png`
+  }
+  getprice(){
+    return `₹${formatmoney(this.priceCents)}`
+
+  }
+}
+
+
+
+
 
 export const products = [
   {
@@ -669,4 +697,6 @@ export const products = [
       "mens"
     ]
   }
-];
+].map((product)=>{
+    return  new Product(product)
+});

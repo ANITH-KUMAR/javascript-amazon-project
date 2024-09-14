@@ -78,5 +78,3 @@ class Cart {
 const cart=new Cart('cart-oop');
 const businesscart = new Cart('cart-business');
 cart.addToCart("e43638ce-6aa0-4b85-b27f-e1d07eb678c");
-console.log(cart);
-console.log(businesscart);
