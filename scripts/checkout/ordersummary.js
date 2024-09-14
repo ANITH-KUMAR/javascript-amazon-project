@@ -1,4 +1,4 @@
-import { cart, removeFromCart, updatedeliveryoption,cartQuantity } from "../../data/cart.js";
+import { cart, removeFromCart, updatedeliveryoption,cartQuantity,savetolocalstorage } from "../../data/cart.js";
 import { renderPaymentSummary } from "./paymentsummary.js";
 import { products,getProduct } from "../../data/products.js";
 import formatmoney from "../utils/money.js";
@@ -51,10 +51,30 @@ export function renderOrderSummary() {
                         cartitem.quantity
                       }</span>
                     </span>
-                    <span class="update-quantity-link link-primary">
+                    
+                    
+                    <span class="update-quantity-link
+                     link-primary" data-pro-id=${productId}>
                       Update
+                     
+            <select class="js-update-value-${productId}  find-option quantity-css" data-product-id=${productId} >
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+        
+                      
                     </span>
-                    <span class="delete-quantity-link link-primary js-delete-link"
+                    <span 
+                    class="delete-quantity-link link-primary js-delete-link"
                     data-product-id="${matchingproduct.id}">
                       Delete
                     </span>
@@ -70,6 +90,9 @@ export function renderOrderSummary() {
               </div>
         </div>
         `;
+
+
+        
   });
 
   function deliveryoptionhtml(matchingproduct, cartitem) {
@@ -100,10 +123,55 @@ export function renderOrderSummary() {
                       </div>
                     </div>`;
     });
+
+    
     return html;
   }
 
+
   document.querySelector(".js-order-summary").innerHTML = cartsummary;
+  
+
+  document.querySelectorAll(".link-primary").forEach((doc)=>{
+   let {proId}=doc.dataset;
+   
+  doc.addEventListener('click',()=>{
+          show(proId);
+          
+
+  });
+});
+
+function show(proId){
+  document
+    .querySelector(`.js-update-value-${proId}`)
+    .classList.remove("quantity-css");
+
+}
+
+
+  document.querySelectorAll('.find-option').forEach((e)=>{
+      e.addEventListener('change',()=>{
+            const {productId}=e.dataset;
+            let tar;
+             cart.forEach((match)=>{
+                 if(productId === match.productId){
+                     tar = match;
+                     
+                 }
+                 
+             })
+             tar.quantity=Number(e.value);
+             
+             savetolocalstorage();
+             renderOrderSummary();
+             renderPaymentSummary();
+      });
+  });
+
+
+  
+ 
 
   document.querySelectorAll(".js-delete-link").forEach((link) => {
     link.addEventListener("click", () => {
@@ -135,4 +203,7 @@ export function renderOrderSummary() {
     });
   });
 }
-// renderOrderSummary();
+
+
+
+

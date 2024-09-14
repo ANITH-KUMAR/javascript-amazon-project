@@ -6,12 +6,19 @@
   <title>Document</title>
 </head>
 <body>
-<select id="options">
+<select id="options" onchange="call()">
   <option value="option1">Option 1</option>
   <option value="option2">Option 2</option>
   <option value="option3">Option 3</option>
+  
 </select>
+<p class="sel">1</p>
 
+<script>
+  function call(){
+   document.querySelector('.sel').innerHTML=options.value;
+}
+</script>
   
 </body>
 </html>

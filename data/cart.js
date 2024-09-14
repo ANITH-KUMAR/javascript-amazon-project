@@ -11,7 +11,7 @@ export let cart = JSON.parse(localStorage.getItem("cart")) || [
   },
 ];
 
-function savetolocalstorage(){
+export function savetolocalstorage(){
   localStorage.setItem('cart',JSON.stringify(cart));
   
 }
@@ -79,7 +79,7 @@ export function updatedeliveryoption(productId,deliveryOptionId){
 export function cartQuantity(){
   let quantity = 0;
   cart.forEach((item) => {
-    quantity += item.quantity;
+    quantity += Number(item.quantity);
   });
   return quantity;
 }
