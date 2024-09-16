@@ -10,30 +10,43 @@ export function getProduct(productId){
   return matchingproduct;
 
 }
-class Product{
+class Product {
   id;
   image;
   name;
   rating;
   priceCents;
 
-  constructor(product){
-           this.id=product.id;
-            this.image=product.image;
-            this.name=product.name;
-            this.rating=product.rating;
-            this.priceCents=product.priceCents;
+  constructor(product) {
+    this.id = product.id;
+    this.image = product.image;
+    this.name = product.name;
+    this.rating = product.rating;
+    this.priceCents = product.priceCents;
   }
 
-  getstarurl(){
-    return `images/ratings/rating-${this.rating.stars * 10}.png`
+  getstarurl() {
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;
   }
-  getprice(){
-    return `₹${formatmoney(this.priceCents)}`
+  getprice() {
+    return `₹${formatmoney(this.priceCents)}`;
+  }
 
+  extraInfoHTML() {
+    return '';
   }
 }
+class Clothing extends Product {
+  sizeChartLink;
+  constructor(productdectails) {
+    super(productdectails);
+    this.sizeChartLink = productdectails.sizeChartLink;
+  }
 
+  extraInfoHTML() {
+    return `<a href="${this.sizeChartLink}" target="_blank">Chart size</a>`;
+  }
+}
 
 
 
@@ -698,5 +711,8 @@ export const products = [
     ]
   }
 ].map((product)=>{
+    if(product.type==='clothing'){
+      return new Clothing(product);
+    }
     return  new Product(product)
 });
