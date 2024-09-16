@@ -1,6 +1,12 @@
 import {cart,Addtocart} from '../data/cart.js'
-import { products } from '../data/products.js';
+import { products,loadproducts } from '../data/products.js';
 import { formatmoney } from './utils/money.js';
+
+loadproducts(renderProductsGrid);
+
+function renderProductsGrid(){
+
+
 let productshtml = "";
 products.forEach((product) => {
   productshtml += `<div class="product-container">
@@ -84,4 +90,5 @@ forEach((button)=>{
         updatecartquantity(productId);//update cart quantity
        });
 
-})
+});
+}
