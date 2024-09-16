@@ -1,14 +1,4 @@
 import formatmoney from "../scripts/utils/money.js";
-export function getProduct(productId){
-  let matchingproduct;
-  products.forEach((product) => {
-    if (product.id == productId) {
-      matchingproduct = product;
-    }
-  });
-  return matchingproduct;
-
-}
 class Product {
   id;
   image;
@@ -46,6 +36,20 @@ class Clothing extends Product {
     return `<a href="${this.sizeChartLink}" target="_blank">Chart size</a>`;
   }
 }
+export function getProduct(productId) {
+  let matchingproduct;
+  products.forEach((product) => {
+    if (product.id == productId) {
+      matchingproduct = product;
+    }
+  });
+  return matchingproduct;
+}
+
+
+
+
+
 /*
 const date=new Date();
 console.log(date);
