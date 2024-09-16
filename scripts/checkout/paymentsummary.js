@@ -57,8 +57,18 @@ export function renderPaymentSummary(){
   document.querySelector(`.js-payment-summary`).innerHTML = paymentsummaryhtml;
 
   document.querySelector('.js-place-order').addEventListener('click',async ()=>{
+     if (cartQuantity() !== 0) {
+       document
+         .querySelector(".js-place-order")
+         .classList.remove("button-primary");
 
-     try{
+       document.querySelector(".js-place-order").innerHTML = "Order Placed";
+     }
+     else{
+      document.querySelector(".js-place-order").innerHTML = "Plz add items to the cart";
+     }
+         
+    /* try{
 const response = await fetch("https://supersimplebackend.dev/orders", {
   method: "POST",
   headers: {
@@ -75,7 +85,7 @@ addOrder(order);
          console.log('unexpected error try again later')
      }
 
-   window.location.href='orders.html'
+   window.location.href='orders.html'*/
   });
   
 }

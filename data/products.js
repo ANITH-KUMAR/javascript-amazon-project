@@ -33,7 +33,7 @@ class Clothing extends Product {
   }
 
   extraInfoHTML() {
-    return `<a href="${this.sizeChartLink}" target="_blank">Chart size</a>`;
+    return `<a style="color:black;text-decoration:none ;background-color:grey ;width:80px;border-radius:20px;padding:10px;text-align:center" href="${this.sizeChartLink}" target="_blank">Chart size</a>`;
   }
 }
 export function getProduct(productId) {
