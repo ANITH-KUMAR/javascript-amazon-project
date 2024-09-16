@@ -83,13 +83,11 @@ export function loadproductsFetch(){
            }
            return new Product(product);
          });
-         console.log("load products");
+         
   });
   return promise;
 }
-loadproductsFetch().then(()=>{
-  console.log('next step')
-});
+loadproductsFetch()
 
 
 
@@ -110,6 +108,7 @@ export function loadproducts(fun){
  xhr.open('GET','https://supersimplebackend.dev/products')
  xhr.send();
 }
+ 
 
 
 
