@@ -1,7 +1,6 @@
 import formatmoney from "../scripts/utils/money.js";
 export function getProduct(productId){
   let matchingproduct;
-
   products.forEach((product) => {
     if (product.id == productId) {
       matchingproduct = product;
