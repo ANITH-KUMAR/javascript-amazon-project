@@ -4,6 +4,7 @@ import { products,getProduct } from "../../data/products.js";
 import formatmoney from "../utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { deliveryoptions, getDeliveryOption } from "../../data/delivery.js";
+import { renderProductsGrid } from "../amazon.js";
 
 const today = dayjs();
 const deliverydate = today.add(7, "days");
@@ -187,11 +188,11 @@ function show(proId){
         `.js-cart-item-container-${productid}`
       );
       container.remove();
-
       document.querySelector(
         ".change-the-cart-total"
       ).innerHTML = `${quantity} items`;
     });
+    renderProductsGrid();
   });
 
   document.querySelectorAll(".js-delivery-option").forEach((element) => {

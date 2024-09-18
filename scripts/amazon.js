@@ -4,7 +4,7 @@ import { formatmoney } from './utils/money.js';
 
 loadproducts(renderProductsGrid);
 
-function renderProductsGrid(){
+export function renderProductsGrid(){
 
 
 let productshtml = "";
