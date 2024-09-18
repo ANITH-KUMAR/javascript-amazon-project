@@ -167,6 +167,7 @@ function show(proId){
              savetolocalstorage();
              renderOrderSummary();
              renderPaymentSummary();
+               renderProductsGrid();
       });
   });
 
