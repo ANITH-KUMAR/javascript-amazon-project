@@ -179,11 +179,12 @@ function show(proId){
     link.addEventListener("click", () => {
       const productid = link.dataset.productId;
       removeFromCart(productid);
-      renderPaymentSummary();
+      
       let quantity = 0;
       cart.forEach((item) => {
         quantity += item.quantity;
       });
+      
 
       const container = document.querySelector(
         `.js-cart-item-container-${productid}`
@@ -192,8 +193,10 @@ function show(proId){
       document.querySelector(
         ".change-the-cart-total"
       ).innerHTML = `${quantity} items`;
+       renderPaymentSummary();
+       renderProductsGrid();
     });
-    renderProductsGrid();
+   
   });
 
   document.querySelectorAll(".js-delivery-option").forEach((element) => {
